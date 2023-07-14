@@ -11,7 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class MicroservicesApplicationTests {
 
-	Specimen specimen;
+	Specimen specimenFetched;
+
 	@Autowired
 	SpecimenService specimenService;
 
@@ -27,14 +28,17 @@ class MicroservicesApplicationTests {
 	}
 
 	private void givenSpecimenInfo() {
-
+		Specimen specimen = new Specimen();
+		specimen.setDescription("Redbud");
+		specimen.setSpecimenId(83);
+		specimenService.save(specimen);
 	}
 
 	private void whenSearchSpecimenWithId83() {
-		specimen = specimenService.fetchById(83);
+		specimenFetched = specimenService.fetchById(83);
 	}
 
 	private void thenReturnSpecimenWithId83andDescriptionRedbud() {
-		assertEquals(specimen.getDescription(), "Redbud");
+		assertEquals(specimenFetched.getDescription(), "Redbud");
 	}
 }
