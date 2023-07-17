@@ -42,11 +42,13 @@ public class PlantDiaryController {
     }
 
     @GetMapping("/specimen")
+    @ResponseBody
     public ResponseEntity<List<Specimen>> fetchAll() {
         return new ResponseEntity<List<Specimen>>(specimenService.fetchAll(), HttpStatus.OK);
     }
 
     @GetMapping("/specimen/{id}")
+    @ResponseBody
     public Specimen fetchById(@PathVariable("id") Integer id) {
         return specimenService.fetchById(id);
     }

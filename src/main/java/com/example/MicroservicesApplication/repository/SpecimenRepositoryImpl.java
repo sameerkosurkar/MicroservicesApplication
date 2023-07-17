@@ -31,7 +31,8 @@ public class SpecimenRepositoryImpl implements SpecimenRepository{
 
     @Override
     public void update(Integer id, Specimen specimen) {
-        specimens.replace(id, specimen);
+        specimens.remove(id);
+        specimens.put(specimen.getSpecimenId(), specimen);
     }
 
     @Override
