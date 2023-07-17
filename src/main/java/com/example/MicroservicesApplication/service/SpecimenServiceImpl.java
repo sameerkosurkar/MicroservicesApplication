@@ -1,10 +1,13 @@
 package com.example.MicroservicesApplication.service;
 
+import com.example.MicroservicesApplication.dto.Plant;
 import com.example.MicroservicesApplication.dto.Specimen;
+import com.example.MicroservicesApplication.repository.PlantRespository;
 import com.example.MicroservicesApplication.repository.SpecimenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.List;
 
 @Component
@@ -12,6 +15,9 @@ public class SpecimenServiceImpl implements SpecimenService{
 
     @Autowired
     SpecimenRepository specimenRepository;
+
+    @Autowired
+    PlantRespository plantRespository;
     @Override
     public Specimen fetchById(int id) {
         return specimenRepository.fetchById(id);
@@ -35,6 +41,11 @@ public class SpecimenServiceImpl implements SpecimenService{
     @Override
     public void delete(Integer id) {
         specimenRepository.delete(id);
+    }
+
+    @Override
+    public List<Plant> fetchPlants(String combinedName) throws IOException {
+        return plantRespository.fetchPlants(combinedName);
     }
 
 }

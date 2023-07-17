@@ -1,5 +1,6 @@
 package com.example.MicroservicesApplication;
 
+import com.example.MicroservicesApplication.dto.Plant;
 import com.example.MicroservicesApplication.dto.Specimen;
 import com.example.MicroservicesApplication.service.SpecimenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -36,9 +38,15 @@ public class PlantDiaryController {
         return "index";
     }
 
-    @RequestMapping("/plants")
-    public ResponseEntity searchPlant(@RequestParam(value = "searchPlant", required = false) String searchPlant) {
-        return new ResponseEntity(HttpStatus.OK);
+    @GetMapping("/plants")
+    public ResponseEntity searchPlants(@RequestParam(value = "searchPlant", required = false, defaultValue = "None") String searchPlant) {
+        try {
+            List<Plant> plantList = specimenService.fetchPlants(searchPlant);
+            return new ResponseEntity(plantList, HttpStatus.OK);
+        } catch (IOException e) {
+//            throw new RuntimeException(e);
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/specimen")
