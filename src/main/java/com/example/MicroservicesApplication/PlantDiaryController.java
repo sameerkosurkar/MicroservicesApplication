@@ -38,7 +38,7 @@ public class PlantDiaryController {
         return "index";
     }
 
-    @GetMapping("/plants")
+    @GetMapping(value = "/plants", consumes = "application/json", produces = "application/json")
     public ResponseEntity searchPlants(@RequestParam(value = "searchPlant", required = false, defaultValue = "None") String searchPlant) {
         try {
             List<Plant> plantList = specimenService.fetchPlants(searchPlant);
@@ -46,6 +46,17 @@ public class PlantDiaryController {
         } catch (IOException e) {
 //            throw new RuntimeException(e);
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @RequestMapping("/plants")
+    public String searchPlantsForm(@RequestParam(value = "searchPlant", required = false, defaultValue = "None") String searchPlant, Model model) {
+        try {
+            List<Plant> plantList = specimenService.fetchPlants(searchPlant);
+            model.addAttribute("plants", plantList);
+            return "plants";
+        } catch (IOException e) {
+            return "error";
         }
     }
 

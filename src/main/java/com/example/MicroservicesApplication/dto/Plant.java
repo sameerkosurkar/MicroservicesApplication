@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class Plant {
     @SerializedName("id")
-    private String id;
+    private Integer id;
     @SerializedName("genus")
     private String genus;
     @SerializedName("species")
