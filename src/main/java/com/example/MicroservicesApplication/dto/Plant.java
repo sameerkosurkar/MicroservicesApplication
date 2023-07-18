@@ -15,4 +15,8 @@ public class Plant {
     private String cultivar;
     @SerializedName("common")
     private String common;
+
+    public String toString() {
+        return this.common;
+    }
 }

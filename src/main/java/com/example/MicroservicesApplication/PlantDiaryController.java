@@ -1,5 +1,6 @@
 package com.example.MicroservicesApplication;
 
+import com.example.MicroservicesApplication.dto.LabelValue;
 import com.example.MicroservicesApplication.dto.Plant;
 import com.example.MicroservicesApplication.dto.Specimen;
 import com.example.MicroservicesApplication.service.SpecimenService;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -58,6 +60,20 @@ public class PlantDiaryController {
         } catch (IOException e) {
             return "error";
         }
+    }
+
+    @RequestMapping("/plantNamesAutocomplete")
+    @ResponseBody
+    public List<LabelValue> plantNamesAutocomplete(@RequestParam("term") String term) throws IOException {
+        List<LabelValue> suggestions = new ArrayList<LabelValue>();
+        List<Plant> plants = specimenService.fetchPlants(term);
+        for (Plant plant:plants) {
+            LabelValue labelValue = new LabelValue();
+            labelValue.setLabel(plant.getCommon());
+            labelValue.setValue(plant.getId());
+            suggestions.add(labelValue);
+        }
+        return suggestions;
     }
 
     @GetMapping("/specimen")
