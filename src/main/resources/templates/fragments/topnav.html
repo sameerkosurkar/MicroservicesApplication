@@ -13,7 +13,14 @@
                 </ul>
             </div>
             <form action="#" th:action="@{/plants}" method="GET" class="d-flex" role="search">
-                <input name="searchPlant" class="form-control me-2" type="search" placeholder="Search Plant" aria-label="Search">
+                <input name="searchPlant" class="form-control me-2" type="search" placeholder="Search Plant" aria-label="Search" list="Plant_Search">
+                <datalist id="Plant_Search">
+                    <option value="Oak">Quercus</option>
+                    <option value="Maple">Acer</option>
+                    <option value="Pine">Pinus</option>
+                    <option value="Spruce">Abies</option>
+                    <option value="Oak Leaved Hydrangea">Hydrangea</option>
+                </datalist>
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
