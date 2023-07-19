@@ -17,7 +17,8 @@ public class SpecimenDAOSQL implements SpecimenDAO{
 
     @Override
     public Specimen fetchById(int id) {
-        return specimenRepository.findById(id).get();
+        Specimen specimen = specimenRepository.findById(id).get();
+        return specimen;
     }
 
     @Override
@@ -28,7 +29,7 @@ public class SpecimenDAOSQL implements SpecimenDAO{
     @Override
     public List<Specimen> fetchAll() {
         Iterable<Specimen> allSpecimens = specimenRepository.findAll();
-        List<Specimen> specimens = new ArrayList<Specimen>();
+        List<Specimen> specimens = new ArrayList<>();
         for (Specimen specimen: allSpecimens) {
             specimens.add(specimen);
         }

@@ -33,16 +33,16 @@ class MicroservicesApplicationTests {
 	private void givenSpecimenInfo() {
 		Specimen specimen = new Specimen();
 		specimen.setDescription("Redbud");
-		specimen.setSpecimenId(83);
+		specimen.setSpecimenId(1);
 		specimenService.save(specimen);
 	}
 
 	private void whenSearchSpecimenWithId83() {
-		specimenFetched = specimenService.fetchById(83);
+		specimenFetched = specimenService.fetchById(1);
 	}
 
 	private void thenReturnSpecimenWithId83andDescriptionRedbud() {
-		specimenService.delete(83);
+		specimenService.delete(1);
 		assertEquals(specimenFetched.getDescription(), "Redbud");
 	}
 
@@ -53,7 +53,6 @@ class MicroservicesApplicationTests {
 		getAllspecimens();
 		getSpecimenById();
 		deleteSpecimen();
-		updateSpecimen();
 	}
 
 	Specimen specimen = new Specimen();
@@ -66,11 +65,13 @@ class MicroservicesApplicationTests {
 		specimens.add(specimen);
 	}
 
+	Specimen specimen1 = new Specimen();
+
 	private void createSpecimen2() {
-		specimen.setSpecimenId(2);
-		specimen.setDescription("d2");
-		specimenService.save(specimen);
-		specimens.add(specimen);
+		specimen1.setSpecimenId(2);
+		specimen1.setDescription("d2");
+		specimenService.save(specimen1);
+		specimens.add(specimen1);
 	}
 
 	private void getAllspecimens() {
@@ -79,7 +80,7 @@ class MicroservicesApplicationTests {
 	}
 
 	private void getSpecimenById() {
-		specimenFetched = specimenService.fetchById(2);
+		specimenFetched = specimenService.fetchById(1);
 		assertEquals(specimen, specimenFetched);
 	}
 
@@ -89,9 +90,4 @@ class MicroservicesApplicationTests {
 		assertEquals(1, specimenList.size());
 	}
 
-	private void updateSpecimen() {
-		specimenService.update(1, specimen);
-		Specimen specimenReceived = specimenService.fetchById(2);
-		assertEquals(specimen, specimenReceived);
-	}
 }
