@@ -1,4 +1,4 @@
-package com.example.MicroservicesApplication.repository;
+package com.example.MicroservicesApplication.dao;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

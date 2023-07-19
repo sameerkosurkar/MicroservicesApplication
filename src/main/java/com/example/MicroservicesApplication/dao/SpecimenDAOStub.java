@@ -1,16 +1,17 @@
-package com.example.MicroservicesApplication.repository;
+package com.example.MicroservicesApplication.dao;
 
 import com.example.MicroservicesApplication.dto.Specimen;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-@Component
-public class SpecimenRepositoryImpl implements SpecimenRepository{
-
-//    List <Specimen> specimens = new ArrayList<Specimen> ();
+@Repository
+@Profile("test")
+public class SpecimenDAOStub implements SpecimenDAO {
 
     HashMap<Integer, Specimen> specimens = new HashMap<>();
 

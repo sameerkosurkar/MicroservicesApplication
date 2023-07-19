@@ -1,10 +1,10 @@
-package com.example.MicroservicesApplication.repository;
+package com.example.MicroservicesApplication.dao;
 
 import com.example.MicroservicesApplication.dto.Specimen;
 
 import java.util.List;
 
-public interface SpecimenRepository {
+public interface SpecimenDAO {
 
     Specimen fetchById(int id);
 

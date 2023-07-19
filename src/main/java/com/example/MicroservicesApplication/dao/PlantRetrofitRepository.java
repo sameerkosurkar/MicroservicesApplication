@@ -1,4 +1,4 @@
-package com.example.MicroservicesApplication.repository;
+package com.example.MicroservicesApplication.dao;
 
 import com.example.MicroservicesApplication.dto.Plant;
 import retrofit2.Call;
