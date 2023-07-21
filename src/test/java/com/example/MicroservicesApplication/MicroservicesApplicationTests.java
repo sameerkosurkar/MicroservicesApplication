@@ -59,7 +59,7 @@ class MicroservicesApplicationTests {
 	List<Specimen> specimens = new ArrayList<>();
 
 	private void createSpecimen1() {
-		specimen.setSpecimenId(1);
+		specimen.setSpecimenId(2);
 		specimen.setDescription("d1");
 		specimenService.save(specimen);
 		specimens.add(specimen);
@@ -68,7 +68,7 @@ class MicroservicesApplicationTests {
 	Specimen specimen1 = new Specimen();
 
 	private void createSpecimen2() {
-		specimen1.setSpecimenId(2);
+		specimen1.setSpecimenId(3);
 		specimen1.setDescription("d2");
 		specimenService.save(specimen1);
 		specimens.add(specimen1);
@@ -80,7 +80,7 @@ class MicroservicesApplicationTests {
 	}
 
 	private void getSpecimenById() {
-		specimenFetched = specimenService.fetchById(1);
+		specimenFetched = specimenService.fetchById(2);
 		assertEquals(specimen, specimenFetched);
 	}
 
