@@ -1,7 +1,6 @@
 ###Files not added to git###
-
-application-dev.properties
 application.properties
+application-dev.properties
 
 HELP.md
 target/
