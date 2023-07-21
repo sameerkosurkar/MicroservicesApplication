@@ -9,8 +9,12 @@ import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Component
@@ -48,5 +52,13 @@ public class SpecimenServiceImpl implements SpecimenService{
     @Cacheable("plants")
     public List<Plant> fetchPlants(String combinedName) throws IOException {
         return plantDAO.fetchPlants(combinedName);
+    }
+
+    @Override
+    public void saveImage(MultipartFile imageFile) throws IOException {
+        String folder = "/Users/nc24625_sameer/photos/";
+        byte[] bytes = imageFile.getBytes();
+        Path path = Paths.get(folder + imageFile.getOriginalFilename());
+        Files.write(path, bytes);
     }
 }
