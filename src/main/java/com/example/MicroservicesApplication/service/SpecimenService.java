@@ -14,8 +14,6 @@ public interface SpecimenService {
     void save(Specimen specimen);
 
     List<Specimen> fetchAll();
-    
-    void update(Integer id, Specimen specimen);
 
     void delete(Integer id);
 

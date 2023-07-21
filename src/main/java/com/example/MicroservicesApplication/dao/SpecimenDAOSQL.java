@@ -37,15 +37,6 @@ public class SpecimenDAOSQL implements SpecimenDAO{
     }
 
     @Override
-    public void update(Integer id, Specimen specimen) {
-        Specimen oldSpecimen = specimenRepository.findById(id).get();
-        oldSpecimen.setDescription(specimen.getDescription());
-        oldSpecimen.setLatitude(specimen.getLatitude());
-        oldSpecimen.setLongitude(specimen.getLongitude());
-        oldSpecimen.setPlantId(specimen.getPlantId());
-    }
-
-    @Override
     public void delete(Integer id) {
         specimenRepository.deleteById(id);
     }

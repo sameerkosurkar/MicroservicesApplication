@@ -31,12 +31,6 @@ public class SpecimenDAOStub implements SpecimenDAO {
     }
 
     @Override
-    public void update(Integer id, Specimen specimen) {
-        specimens.remove(id);
-        specimens.put(specimen.getSpecimenId(), specimen);
-    }
-
-    @Override
     public void delete(Integer id) {
         specimens.remove(id);
     }

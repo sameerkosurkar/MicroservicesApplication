@@ -94,11 +94,6 @@ public class PlantDiaryController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/specimen/{id}")
-    public void updateSpecimen(@PathVariable("id") Integer id, @RequestBody Specimen specimen) {
-        specimenService.update(id, specimen);
-    }
-
     @DeleteMapping("/specimen/{id}")
     public void deleteSpecimen(@PathVariable("id") Integer id) {
         specimenService.delete(id);

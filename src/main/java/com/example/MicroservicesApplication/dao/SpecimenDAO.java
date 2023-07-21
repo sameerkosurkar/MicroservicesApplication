@@ -12,7 +12,5 @@ public interface SpecimenDAO {
 
     List<Specimen> fetchAll();
 
-    void update(Integer id, Specimen specimen);
-
     void delete(Integer id);
 }

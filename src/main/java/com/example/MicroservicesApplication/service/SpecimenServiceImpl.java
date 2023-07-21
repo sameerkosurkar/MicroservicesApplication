@@ -34,11 +34,6 @@ public class SpecimenServiceImpl implements SpecimenService{
     }
 
     @Override
-    public void update(Integer id, Specimen specimen) {
-        specimenDAO.update(id, specimen);
-    }
-
-    @Override
     public void delete(Integer id) {
         specimenDAO.delete(id);
     }
