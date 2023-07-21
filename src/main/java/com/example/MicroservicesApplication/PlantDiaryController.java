@@ -1,6 +1,7 @@
 package com.example.MicroservicesApplication;
 
 import com.example.MicroservicesApplication.dto.LabelValue;
+import com.example.MicroservicesApplication.dto.Photo;
 import com.example.MicroservicesApplication.dto.Plant;
 import com.example.MicroservicesApplication.dto.Specimen;
 import com.example.MicroservicesApplication.service.SpecimenService;
@@ -34,12 +35,6 @@ public class PlantDiaryController {
 
     @Autowired
     SpecimenService specimenService;
-
-    @RequestMapping("/saveSpecimen")
-    public String save(Specimen specimen) {
-        specimenService.save(specimen);
-        return "index";
-    }
 
     @GetMapping(value = "/plants", consumes = "application/json", produces = "application/json")
     public ResponseEntity searchPlants(@RequestParam(value = "searchPlant", required = false, defaultValue = "None") String searchPlant) {
@@ -100,12 +95,20 @@ public class PlantDiaryController {
         specimenService.delete(id);
     }
 
-    @PostMapping("/uploadImage")
-    public String uploadImage(@RequestParam("imageFile")MultipartFile imageFile, Model model) {
+    @RequestMapping("/saveSpecimen")
+    public String save(Specimen specimen) {
+        specimenService.save(specimen);
+        return "index";
+    }
+    @PostMapping("/saveSpecimen")
+    public String save(@RequestParam("imageFile")MultipartFile imageFile, Model model, Specimen specimen) {
         try {
-            specimenService.saveImage(imageFile);
-            Specimen specimen = new Specimen();
-            model.addAttribute("specimen", specimen);
+            Photo photo = new Photo();
+            specimenService.save(specimen);
+            photo.setPath("/Users/nc24625_sameer/photos/");
+            photo.setSpecimen(specimen);
+            specimenService.saveImage(imageFile, photo);
+            model.addAttribute(specimen);
             return "index";
         } catch (IOException e) {
             e.printStackTrace();

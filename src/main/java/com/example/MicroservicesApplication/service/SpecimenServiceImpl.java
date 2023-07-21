@@ -1,5 +1,7 @@
 package com.example.MicroservicesApplication.service;
 
+import com.example.MicroservicesApplication.dao.PhotoDAO;
+import com.example.MicroservicesApplication.dto.Photo;
 import com.example.MicroservicesApplication.dto.Plant;
 import com.example.MicroservicesApplication.dto.Specimen;
 import com.example.MicroservicesApplication.dao.PlantDAO;
@@ -23,6 +25,9 @@ public class SpecimenServiceImpl implements SpecimenService{
 
     @Autowired
     SpecimenDAO specimenDAO;
+
+    @Autowired
+    PhotoDAO photoDAO;
 
     @Autowired
     PlantDAO plantDAO;
@@ -55,10 +60,8 @@ public class SpecimenServiceImpl implements SpecimenService{
     }
 
     @Override
-    public void saveImage(MultipartFile imageFile) throws IOException {
-        String folder = "/Users/nc24625_sameer/photos/";
-        byte[] bytes = imageFile.getBytes();
-        Path path = Paths.get(folder + imageFile.getOriginalFilename());
-        Files.write(path, bytes);
+    public void saveImage(MultipartFile imageFile, Photo photo) throws IOException {
+        photoDAO.save(photo);
+        photoDAO.saveImage(imageFile);
     }
 }
